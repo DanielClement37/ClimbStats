@@ -10,12 +10,28 @@
     <ContentPage.BindingContext>
         <vm:BoulderViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+                    <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Button x:Name="btnAdd" WidthRequest="200" Text="Add" />
+                        <Button x:Name="btnRead" WidthRequest="200" Text="Get All" />
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Button x:Name="btnUpdate" WidthRequest="200" Text="Update" />
+                        <Button x:Name="btnDelete" WidthRequest="200" Text="Delete" />
+                    </StackLayout>
+                    <ListView x:Name="lstSportClimbs">
+                        <!--<ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell ></TextCell>
+                        </DataTemplate>
+                        </ListView.ItemTemplate> -->
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

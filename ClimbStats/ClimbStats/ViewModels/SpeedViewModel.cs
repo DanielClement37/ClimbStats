@@ -8,7 +8,7 @@ namespace ClimbStats.ViewModels
     {
         public SpeedViewModel()
         {
-            Title = "Speed Climbing Stats";
+            Title = "Speed Climbing";
         }
     }
 }

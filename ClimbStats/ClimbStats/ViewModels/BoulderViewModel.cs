@@ -8,7 +8,7 @@ namespace ClimbStats.ViewModels
     {
         public BoulderViewModel()
         {
-            Title = "Boulder Stats";
+            Title = "Bouldering";
         }
     }
 }

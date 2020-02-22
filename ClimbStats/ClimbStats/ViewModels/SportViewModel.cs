@@ -54,25 +54,28 @@ namespace ClimbStats.ViewModels
         }
 
         //Add climb
-        public async Task AddSportClimb(int numAttempts, string grade, bool isOutdoors)
+        public async Task AddSportClimb(SportClimb climb)
         {
             int result = 0;
             DateTime sendDate = DateTime.Today;
             try
             {
-                result = await conn.InsertAsync(new SportClimb
+                if (ClimbValidation(climb))
                 {
-                    SendDate = sendDate,
-                    NumAttempts = numAttempts,
-                    Grade = grade,
-                    IsOutdoors = isOutdoors
-                });
+                    result = await conn.InsertAsync(new SportClimb
+                    {
+                        SendDate = sendDate,
+                        NumAttempts = climb.NumAttempts,
+                        Grade = climb.Grade,
+                        IsOutdoors = climb.IsOutdoors
+                    });
 
-                StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, sendDate, numAttempts, grade, isOutdoors);
+                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, sendDate, climb.NumAttempts, climb.Grade, climb.IsOutdoors);
+                }
             }
             catch (Exception ex)
             {
-                StatusMessage = string.Format("Failed to add {0}. Error: {1}", grade, ex.Message);
+                StatusMessage = string.Format("Failed to add {0}. Error: {1}", climb.Grade, ex.Message);
             }
         }
 
@@ -85,18 +88,29 @@ namespace ClimbStats.ViewModels
             }
             catch (Exception ex)
             {
-                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+                StatusMessage = string.Format("Failed to delete data. {0}", ex.Message);
             }
             return -1;
         }
 
         //Edit Climb
-        public async Task EditSportClimb(int id, int numAttempts, string grade, bool isOutdoors)
+        public async Task EditSportClimb(SportClimb climb)
         {
+            try
+            {
+                if (ClimbValidation(climb))
+                {
+                    await conn.UpdateAsync(climb);
+                }
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to update {0}. Error: {1}", climb.Grade, ex.Message);
+            }
         }
 
         //true if info is valid
-        private bool ClimbValidation(int numAttempts, string grade, bool isOutdoors)
+        private bool ClimbValidation(SportClimb climb)
         {
             return true;
         }

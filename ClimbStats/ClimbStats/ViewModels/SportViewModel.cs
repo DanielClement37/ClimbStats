@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClimbStats.Models;
+﻿using ClimbStats.Models;
 using SQLite;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ClimbStats.ViewModels
 {
@@ -12,6 +10,17 @@ namespace ClimbStats.ViewModels
     {
         private SQLiteAsyncConnection conn;
         public string StatusMessage { get; set; }
+
+        //private List<string> _grades;
+        //_grades = new List<string>(){
+        //        "5.5" ,"5.6" ,"5.7" ,"5.8" ,"5.9" ,
+        //        "5.10a" , "5.10b" ,"5.10c" ,"5.10d" ,
+        //         "5.11a" ,"5.11b" ,"5.11c" ,"5.11d" ,
+        //         "5.12a" ,"5.12b" ,"5.12c" ,"5.12d" ,
+        //         "5.13a" ,"5.13b" ,"5.13c" ,"5.13d" ,
+        //         "5.14a" ,"5.14b" ,"5.14c" ,"5.14d" ,
+        //         "5.15a" ,"5.15b" ,"5.15c" ,"5.15d"
+        //    };
 
         public SportViewModel()
         {
@@ -22,6 +31,7 @@ namespace ClimbStats.ViewModels
         {
             conn = new SQLiteAsyncConnection(dbPath);
             conn.CreateTableAsync<SportClimb>().Wait();
+
             Title = "Sport Climbing";
         }
 
@@ -54,28 +64,37 @@ namespace ClimbStats.ViewModels
         }
 
         //Add climb
-        public async Task AddSportClimb(SportClimb climb)
+        public async Task AddSportClimb(int numAttempts, string grade, bool isOutdoors)
         {
             int result = 0;
-            DateTime sendDate = DateTime.Today;
+
+            var climb = new SportClimb()
+            {
+                SendDate = DateTime.Today,
+                NumAttempts = numAttempts,
+                Grade = grade,
+                IsOutdoors = isOutdoors
+            };
+
             try
             {
                 if (ClimbValidation(climb))
                 {
-                    result = await conn.InsertAsync(new SportClimb
+                    result = await conn.InsertAsync(new SportClimb()
                     {
-                        SendDate = sendDate,
-                        NumAttempts = climb.NumAttempts,
-                        Grade = climb.Grade,
-                        IsOutdoors = climb.IsOutdoors
+                        SendDate = DateTime.Today,
+                        NumAttempts = numAttempts,
+                        Grade = grade,
+                        IsOutdoors = isOutdoors
                     });
 
-                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, sendDate, climb.NumAttempts, climb.Grade, climb.IsOutdoors);
+                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, climb.SendDate, climb.NumAttempts, climb.Grade, climb.IsOutdoors);
                 }
             }
             catch (Exception ex)
             {
                 StatusMessage = string.Format("Failed to add {0}. Error: {1}", climb.Grade, ex.Message);
+                Console.WriteLine(StatusMessage);
             }
         }
 

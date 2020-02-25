@@ -14,24 +14,23 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
-                    <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                        <Button x:Name="btnAdd" WidthRequest="200" Text="Add" />
-                        <Button x:Name="btnRead" WidthRequest="200" Text="Get All" />
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                        <Button x:Name="btnUpdate" WidthRequest="200" Text="Update" />
-                        <Button x:Name="btnDelete" WidthRequest="200" Text="Delete" />
-                    </StackLayout>
-                    <ListView x:Name="lstSportClimbs">
-                        <!--<ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell ></TextCell>
-                        </DataTemplate>
-                        </ListView.ItemTemplate> -->
-                    </ListView>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Button x:Name="btnCreate" WidthRequest="200" Text="Create" Clicked="OnSportAddClicked"/>
+                    <Button x:Name="btnRead" WidthRequest="200" Text="Get All"  Clicked="OnGetAllClicked"/>
                 </StackLayout>
+                <ListView x:Name="lstSportClimbs">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Clicked="OnMore"
+                                              Text="Deatails" />
+                                </ViewCell.ContextActions>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

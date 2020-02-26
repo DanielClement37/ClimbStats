@@ -21,7 +21,7 @@ namespace ClimbStats.Views
             InitializeComponent();
         }
 
-        async void OnSportAddClicked(object sender, EventArgs e)
+        private async void OnSportAddClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SportCreatePage()
             {
@@ -29,16 +29,17 @@ namespace ClimbStats.Views
             });
         }
 
-        async void OnGetAllClicked(object sender, EventArgs e)
+        private async void OnGetAllClicked(object sender, EventArgs e)
         {
             List<SportClimb> sportClimbs = await App.SportVM.GetAllSportClimbs();
 
             lstSportClimbs.ItemsSource = sportClimbs;
         }
 
-        async void btnClimb_Clicked(object sender, EventArgs e)
+        private async void lstSportClimbs_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-             await Navigation.PushAsync(new SportDetailsPage() { BindingContext = lstSportClimbs.SelectedItem});
+            var data = lstSportClimbs.SelectedItem;
+            await Navigation.PushAsync(new SportDetailsPage() { BindingContext = data });
         }
     }
 }

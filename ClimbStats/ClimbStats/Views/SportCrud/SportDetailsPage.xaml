@@ -9,22 +9,26 @@
 
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout>
+                <Label Text="Climb Id" FontSize="Medium" WidthRequest="200"></Label>
+                <Label x:Name="lbId" Text="{Binding Id}" FontSize="Medium" WidthRequest="200" />
+            </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbGrade" Text="Climbing Grade" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entGrade" Text="{Binding Grade}" WidthRequest="200"/>
+                <Entry x:Name="entGrade" Text="{Binding Grade}" WidthRequest="200" />
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entNumAttempts" Text="{Binding NumAttempts}" WidthRequest="200"/>
+                <Entry x:Name="entNumAttempts" Text="{Binding NumAttempts}" WidthRequest="200" />
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Route" FontSize="Medium" WidthRequest="200" />
                 <CheckBox x:Name="cbIsOutdoors"  WidthRequest="200" IsChecked="{Binding IsOutdoors}" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <Button x:Name="btnSave" WidthRequest="130" Text="Save Climb" Clicked="btnSave_Clicked"/>
-                <Button x:Name="btnDelete" WidthRequest="130" Text="Delete Climb" Clicked="btnDelete_Clicked"/>
-                <Button x:Name="btnCancel" WidthRequest="130" Text="Cancel" Clicked="btnCancel_Clicked"/>
+                <Button x:Name="btnSave" WidthRequest="130" Text="Save Climb" Clicked="btnSave_Clicked" />
+                <Button x:Name="btnDelete" WidthRequest="130" Text="Delete Climb" Clicked="btnDelete_Clicked" />
+                <Button x:Name="btnCancel" WidthRequest="130" Text="Cancel" Clicked="btnCancel_Clicked" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

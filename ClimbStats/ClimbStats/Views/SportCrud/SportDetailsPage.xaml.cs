@@ -27,7 +27,7 @@ namespace ClimbStats.Views.SportCrud
 
         private async void btnDelete_Clicked(object sender, EventArgs e)
         {
-            int id = 0;
+            int id = Convert.ToInt32(lbId.Text);
             await App.SportVM.DeleteClimb(id);
             await Navigation.PopAsync();
         }

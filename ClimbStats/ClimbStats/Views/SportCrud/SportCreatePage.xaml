@@ -12,19 +12,19 @@
         <StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbGrade" Text="Climbing Grade" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entGrade" Placeholder="Grade" WidthRequest="200"/>
+                <Entry x:Name="entGrade" Placeholder="Grade" WidthRequest="200" />
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entNumAttempts" Placeholder="ex) 1" WidthRequest="200"/>
+                <Entry x:Name="entNumAttempts" Placeholder="ex) 1" WidthRequest="200" />
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <Label x:Name="lbIsOutdoors" Text="Check for Indoor Route" FontSize="Medium" WidthRequest="200" />
-                <CheckBox x:Name="cbIsOutdoors"  WidthRequest="200"/>
+                <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Route" FontSize="Medium" WidthRequest="200" />
+                <CheckBox x:Name="cbIsOutdoors"  WidthRequest="200" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <Button x:Name="btnAdd" WidthRequest="200" Text="Add Climb" Clicked="btnAdd_Clicked"/>
-                <Button x:Name="btnCancel" WidthRequest="200" Text="Cancel" Clicked="btnCancel_Clicked"/>
+                <Button x:Name="btnAdd" WidthRequest="200" Text="Add Climb" Clicked="btnAdd_Clicked" />
+                <Button x:Name="btnCancel" WidthRequest="200" Text="Cancel" Clicked="btnCancel_Clicked" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -12,15 +12,19 @@
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <Button x:Name="btnCreate" WidthRequest="200" Text="Create" Clicked="OnSportAddClicked"/>
-                    <Button x:Name="btnRead" WidthRequest="200" Text="Get All"  Clicked="OnGetAllClicked"/>
+                    <Button x:Name="btnCreate" WidthRequest="200" Text="Create" Clicked="OnSportAddClicked" />
+                    <Button x:Name="btnRead" WidthRequest="200" Text="Get All"  Clicked="OnGetAllClicked" />
                 </StackLayout>
-                <ListView x:Name="lstSportClimbs">
+                <ListView x:Name="lstSportClimbs" ItemSelected="lstSportClimbs_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="30">
-                                <StackLayout Padding="5" >
-                                    <Button x:Name="btnClimb" Text="{Binding Grade}" Clicked="btnClimb_Clicked"/>
+                                <StackLayout Padding="5" Orientation="Horizontal">
+                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="True" />
+                                    <Label x:Name="lbClimbGrade" Text="{Binding Grade}" IsVisible="True" />
+                                    <Label x:Name="lbClimbAttempts" Text="{Binding NumAttempts}" IsVisible="true" />
+                                    <Label x:Name="lbClimbIO" Text="{Binding IsOutdoors}" IsVisible="True" />
+                                    <Label x:Name="lbClimbSendDate" Text="{Binding SendDate}" IsVisible="True" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

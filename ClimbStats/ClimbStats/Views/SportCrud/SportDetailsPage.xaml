@@ -4,30 +4,27 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:local="clr-namespace:ClimbStats.ViewModels"
-             x:Class="ClimbStats.Views.SportCrud.SportCreate"
-             Title="Add Sport Climb">
-    <ContentPage.BindingContext>
-        <local:SportViewModel/>
-    </ContentPage.BindingContext>
-    
+             x:Class="ClimbStats.Views.SportCrud.SportDetailsPage"
+             Title="Climb Details">
+
     <ContentPage.Content>
         <StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbGrade" Text="Climbing Grade" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entGrade" Placeholder="Grade" WidthRequest="200"/>
+                <Entry x:Name="entGrade" Text="{Binding Grade}" WidthRequest="200"/>
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entNumAttempts" Placeholder="ex) 1" WidthRequest="200"/>
+                <Entry x:Name="entNumAttempts" Text="{Binding NumAttempts}" WidthRequest="200"/>
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <Label x:Name="lbIsOutdoors" Text="Check for Indoor Route" FontSize="Medium" WidthRequest="200" />
-                <CheckBox x:Name="cbIsOutdoors"  WidthRequest="200"/>
+                <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Route" FontSize="Medium" WidthRequest="200" />
+                <CheckBox x:Name="cbIsOutdoors"  WidthRequest="200" IsChecked="{Binding IsOutdoors}" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <Button x:Name="btnAdd" WidthRequest="200" Text="Add Climb" Clicked="btnAdd_Clicked"/>
-                <Button x:Name="btnCancel" WidthRequest="200" Text="Cancel" Clicked="btnCancel_Clicked"/>
+                <Button x:Name="btnSave" WidthRequest="130" Text="Save Climb" Clicked="btnSave_Clicked"/>
+                <Button x:Name="btnDelete" WidthRequest="130" Text="Delete Climb" Clicked="btnDelete_Clicked"/>
+                <Button x:Name="btnCancel" WidthRequest="130" Text="Cancel" Clicked="btnCancel_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

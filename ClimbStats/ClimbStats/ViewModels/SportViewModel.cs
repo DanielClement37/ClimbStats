@@ -1,4 +1,5 @@
 ﻿using ClimbStats.Models;
+using ClimbStats.Services;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace ClimbStats.ViewModels
 {
     public class SportViewModel : BaseViewModel
     {
+    
         private SQLiteAsyncConnection conn;
         public string StatusMessage { get; set; }
 
@@ -22,10 +24,6 @@ namespace ClimbStats.ViewModels
         //         "5.15a" ,"5.15b" ,"5.15c" ,"5.15d"
         //    };
 
-        public SportViewModel()
-        {
-            Title = "Sport Climbing";
-        }
 
         public SportViewModel(string dbPath)
         {
@@ -68,7 +66,7 @@ namespace ClimbStats.ViewModels
         {
             int result = 0;
 
-            var climb = new SportClimb()
+            var climb = new SportClimb
             {
                 SendDate = DateTime.Today,
                 NumAttempts = numAttempts,
@@ -80,20 +78,14 @@ namespace ClimbStats.ViewModels
             {
                 if (ClimbValidation(climb))
                 {
-                    result = await conn.InsertAsync(new SportClimb()
-                    {
-                        SendDate = DateTime.Today,
-                        NumAttempts = numAttempts,
-                        Grade = grade,
-                        IsOutdoors = isOutdoors
-                    });
+                    result = await conn.InsertAsync(climb);
 
                     StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, climb.SendDate, climb.NumAttempts, climb.Grade, climb.IsOutdoors);
                 }
             }
             catch (Exception ex)
             {
-                StatusMessage = string.Format("Failed to add {0}. Error: {1}", climb.Grade, ex.Message);
+                StatusMessage = string.Format("Failed to add {0}. Error: {1}", grade, ex.Message);
                 Console.WriteLine(StatusMessage);
             }
         }

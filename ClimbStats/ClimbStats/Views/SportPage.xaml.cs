@@ -1,4 +1,5 @@
 ﻿using ClimbStats.Models;
+using ClimbStats.Services;
 using ClimbStats.ViewModels;
 using ClimbStats.Views.SportCrud;
 using System;
@@ -22,7 +23,7 @@ namespace ClimbStats.Views
 
         async void OnSportAddClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SportCreate
+            await Navigation.PushAsync(new SportCreatePage()
             {
                 BindingContext = new SportClimb()
             });
@@ -30,25 +31,14 @@ namespace ClimbStats.Views
 
         async void OnGetAllClicked(object sender, EventArgs e)
         {
-            SportViewModel svm = new SportViewModel();
-            List<SportClimb> sportClimbs = await svm.GetAllSportClimbs();
+            List<SportClimb> sportClimbs = await App.SportVM.GetAllSportClimbs();
 
-            ClimbList = new ObservableCollection<string>();
-
-            foreach(SportClimb c in sportClimbs)
-            {
-                ClimbList.Add(c.ToString());
-            }
-
-            lstSportClimbs.ItemsSource = ClimbList;
+            lstSportClimbs.ItemsSource = sportClimbs;
         }
 
-        public void OnMore(object sender, EventArgs e)
+        async void btnClimb_Clicked(object sender, EventArgs e)
         {
-            var mi = ((MenuItem)sender);
-            DisplayAlert("More Context Action", mi.CommandParameter + " more context action", "OK");
+             await Navigation.PushAsync(new SportDetailsPage() { BindingContext = lstSportClimbs.SelectedItem});
         }
-
-        ObservableCollection<string> ClimbList;
     }
 }

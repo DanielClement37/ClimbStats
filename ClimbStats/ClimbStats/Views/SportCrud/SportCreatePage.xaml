@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:ClimbStats.ViewModels"
+             x:Class="ClimbStats.Views.SportCrud.SportCreatePage"
+             Title="Add Sport Climb">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbGrade" Text="Climbing Grade" FontSize="Medium" WidthRequest="200" />
+                <Entry x:Name="entGrade" Placeholder="Grade" WidthRequest="200"/>
+            </StackLayout>
+            <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
+                <Entry x:Name="entNumAttempts" Placeholder="ex) 1" WidthRequest="200"/>
+            </StackLayout>
+            <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbIsOutdoors" Text="Check for Indoor Route" FontSize="Medium" WidthRequest="200" />
+                <CheckBox x:Name="cbIsOutdoors"  WidthRequest="200"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Button x:Name="btnAdd" WidthRequest="200" Text="Add Climb" Clicked="btnAdd_Clicked"/>
+                <Button x:Name="btnCancel" WidthRequest="200" Text="Cancel" Clicked="btnCancel_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

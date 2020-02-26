@@ -8,10 +8,6 @@
              x:Class="ClimbStats.Views.SportPage"
              Title="{Binding Title}">
 
-    <ContentPage.BindingContext>
-        <vm:SportViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
@@ -22,11 +18,10 @@
                 <ListView x:Name="lstSportClimbs">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.ContextActions>
-                                    <MenuItem Clicked="OnMore"
-                                              Text="Deatails" />
-                                </ViewCell.ContextActions>
+                            <ViewCell Height="30">
+                                <StackLayout Padding="5" >
+                                    <Button x:Name="btnClimb" Text="{Binding Grade}" Clicked="btnClimb_Clicked"/>
+                                </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

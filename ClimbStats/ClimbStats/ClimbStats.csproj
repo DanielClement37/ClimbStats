@@ -26,16 +26,10 @@
     <EmbeddedResource Update="Views\SpeedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SportCrud\SportCreate.xaml">
+    <EmbeddedResource Update="Views\SportCrud\SportCreatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SportCrud\SportDelete.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\SportCrud\SportUpdate.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\SportCrud\SportRead.xaml">
+    <EmbeddedResource Update="Views\SportCrud\SportDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SportPage.xaml">
@@ -49,8 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\SportCrud\SportUpdate.xaml.cs">
-      <DependentUpon>SportUpdate.xaml</DependentUpon>
+    <Compile Update="Views\SportCrud\SportCreatePage.xaml.cs">
+      <DependentUpon>SportCreatePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

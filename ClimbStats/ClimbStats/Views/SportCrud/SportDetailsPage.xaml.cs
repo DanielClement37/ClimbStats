@@ -20,8 +20,12 @@ namespace ClimbStats.Views.SportCrud
 
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
-            var temp = new SportClimb();
-            await App.SportVM.EditSportClimb(temp);
+            int id = Convert.ToInt32(lbId.Text);
+            var grade = entGrade.Text;
+            int numAttempts = Convert.ToInt32(entNumAttempts.Text);
+            var isOutdoors = cbIsOutdoors.IsChecked;
+
+            await App.SportVM.EditSportClimb(id,numAttempts,grade,isOutdoors);
             await Navigation.PopAsync();
         }
 

@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label Text="Climb Id" FontSize="Medium" WidthRequest="200"></Label>
                 <Label x:Name="lbId" Text="{Binding Id}" FontSize="Medium" WidthRequest="200" />
             </StackLayout>

@@ -105,10 +105,16 @@ namespace ClimbStats.ViewModels
         }
 
         //Edit Climb
-        public async Task EditSportClimb(SportClimb climb)
+        public async Task EditSportClimb(int id, int numAttempts, string grade, bool isOutdoors)
         {
             try
             {
+                var climb = await conn.Table<SportClimb>().FirstOrDefaultAsync(x => x.Id == id);
+
+                climb.Grade = grade;
+                climb.IsOutdoors = isOutdoors;
+                climb.NumAttempts = numAttempts;
+
                 if (ClimbValidation(climb))
                 {
                     await conn.UpdateAsync(climb);
@@ -116,7 +122,7 @@ namespace ClimbStats.ViewModels
             }
             catch (Exception ex)
             {
-                StatusMessage = string.Format("Failed to update {0}. Error: {1}", climb.Grade, ex.Message);
+                StatusMessage = string.Format("Failed to update {0}. Error: {1}", grade, ex.Message);
             }
         }
 

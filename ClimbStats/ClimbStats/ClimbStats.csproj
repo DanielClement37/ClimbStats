@@ -17,6 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\BoulderCrud\BoulderCreatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BoulderCrud\BoulderDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\BoulderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -38,7 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\BoulderCrud\" />
     <Folder Include="Views\SpeedCrud\" />
   </ItemGroup>
 

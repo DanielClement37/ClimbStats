@@ -19,6 +19,7 @@ namespace ClimbStats.Views
         public SportPage()
         {
             InitializeComponent();
+
             lstSportClimbs.RefreshCommand = new Command(async () => {
                 //Do your stuff.    
                 List<SportClimb> sportClimbs = await App.SportVM.GetAllSportClimbs();

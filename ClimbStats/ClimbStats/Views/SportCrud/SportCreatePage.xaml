@@ -15,7 +15,8 @@
                 <Picker x:Name="pkGrade"
                         Title="Select a Grade">
                     <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
+                        <!--TODO: Make this MVVM and not hard coded-->
+                            <x:Array Type="{x:Type x:String}">
                             <x:String>5.5</x:String>
                             <x:String>5.6</x:String>
                             <x:String>5.7</x:String>

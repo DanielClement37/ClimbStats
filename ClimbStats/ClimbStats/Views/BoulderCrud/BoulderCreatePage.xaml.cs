@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClimbStats.Models;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ClimbStats.ViewModels;
 
-namespace ClimbStats.Views.SportCrud
+namespace ClimbStats.Views.BoulderCrud
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SportCreatePage : ContentPage
+    public partial class BoulderCreatePage : ContentPage
     {
-        public SportCreatePage()
+        public BoulderCreatePage()
         {
             InitializeComponent();
         }
@@ -23,8 +22,8 @@ namespace ClimbStats.Views.SportCrud
             var grade = pkGrade.SelectedItem.ToString();
             int numAttempts = Convert.ToInt32(entNumAttempts.Text);
             var isOutdoors = cbIsOutdoors.IsChecked;
-            
-            await App.SportVM.AddSportClimb(numAttempts, grade, isOutdoors);
+
+            await App.BoulderVM.AddBoulder(numAttempts, grade, isOutdoors);
 
             await Navigation.PopAsync();
         }

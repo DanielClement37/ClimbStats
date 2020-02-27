@@ -12,12 +12,14 @@ namespace ClimbStats
         private string dbPath => FileAccessHelper.GetLocalFilePath("Climbs.db");
 
         public static SportViewModel SportVM { get; private set; }
+        public static BoulderViewModel BoulderVM { get; private set; }
 
         public App()
         {
             InitializeComponent();
 
             SportVM = new SportViewModel(dbPath);
+            BoulderVM = new BoulderViewModel(dbPath);
 
             MainPage = new MainPage();
         }

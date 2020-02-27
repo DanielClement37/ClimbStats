@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:ClimbStats.ViewModels"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.SportPage"
-             Title="{Binding Title}">
+             Title="Sport Climbing Stats">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="OnSportAddClicked" />

@@ -3,29 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClimbStats.Models;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ClimbStats.ViewModels;
 
-namespace ClimbStats.Views.SportCrud
+namespace ClimbStats.Views.BoulderCrud
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SportCreatePage : ContentPage
+    public partial class BoulderDetailsPage : ContentPage
     {
-        public SportCreatePage()
+        public BoulderDetailsPage()
         {
             InitializeComponent();
         }
 
-        private async void btnAdd_Clicked(object sender, EventArgs e)
+        private async void btnSave_Clicked(object sender, EventArgs e)
         {
+            int id = Convert.ToInt32(lbId.Text);
             var grade = pkGrade.SelectedItem.ToString();
             int numAttempts = Convert.ToInt32(entNumAttempts.Text);
             var isOutdoors = cbIsOutdoors.IsChecked;
-            
-            await App.SportVM.AddSportClimb(numAttempts, grade, isOutdoors);
 
+            await App.BoulderVM.EditBoulder(id, numAttempts, grade, isOutdoors);
+            await Navigation.PopAsync();
+        }
+
+        private async void btnDelete_Clicked(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(lbId.Text);
+            await App.BoulderVM.DeleteBoulder(id);
             await Navigation.PopAsync();
         }
 

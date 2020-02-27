@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ClimbStats.Views.BoulderCrud.BoulderDetailsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" IsVisible="False">
+                <Label Text="Climb Id" FontSize="Medium" WidthRequest="200"></Label>
+                <Label x:Name="lbId" Text="{Binding Id}" FontSize="Medium" WidthRequest="200" />
+            </StackLayout>
+            <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbGrade" Text="Boulder Grade" FontSize="Medium" WidthRequest="200" />
+                <Picker x:Name="pkGrade"
+                        Title="Select a Grade"
+                        SelectedItem="{Binding Grade}"
+                        WidthRequest="200">
+                    <Picker.ItemsSource>
+                        <!--TODO: Make this MVVM and not hard coded-->
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>VB</x:String>
+                            <x:String>V0</x:String>
+                            <x:String>V1</x:String>
+                            <x:String>V2</x:String>
+                            <x:String>V3</x:String>
+                            <x:String>V4</x:String>
+                            <x:String>V5</x:String>
+                            <x:String>V6</x:String>
+                            <x:String>V7</x:String>
+                            <x:String>V8</x:String>
+                            <x:String>V9</x:String>
+                            <x:String>V10</x:String>
+                            <x:String>V11</x:String>
+                            <x:String>V12</x:String>
+                            <x:String>V13</x:String>
+                            <x:String>V14</x:String>
+                            <x:String>V15</x:String>
+                            <x:String>V16</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+            <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
+                <Entry x:Name="entNumAttempts" Text="{Binding NumAttempts}" WidthRequest="200" />
+            </StackLayout>
+            <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Boulder" FontSize="Medium" WidthRequest="200" />
+                <CheckBox x:Name="cbIsOutdoors"  WidthRequest="200" IsChecked="{Binding IsOutdoors}" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Button x:Name="btnSave" WidthRequest="130" Text="Save Boulder" Clicked="btnSave_Clicked" />
+                <Button x:Name="btnDelete" WidthRequest="130" Text="Delete Boulder" Clicked="btnDelete_Clicked" />
+                <Button x:Name="btnCancel" WidthRequest="130" Text="Cancel" Clicked="btnCancel_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

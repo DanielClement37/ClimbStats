@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" IsVisible="False">
                 <Label Text="Climb Id" FontSize="Medium" WidthRequest="200"></Label>
                 <Label x:Name="lbId" Text="{Binding Id}" FontSize="Medium" WidthRequest="200" />
             </StackLayout>
@@ -20,6 +20,7 @@
                         SelectedItem="{Binding Grade}"
                         WidthRequest="200">
                     <Picker.ItemsSource>
+                        <!--TODO: Make this MVVM and not hard coded-->
                         <x:Array Type="{x:Type x:String}">
                             <x:String>5.5</x:String>
                             <x:String>5.6</x:String>

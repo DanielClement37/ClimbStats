@@ -12,7 +12,43 @@
         <StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbGrade" Text="Climbing Grade" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entGrade" Placeholder="Grade" WidthRequest="200" />
+                <Picker x:Name="pkGrade"
+                        Title="Select a Grade">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>5.5</x:String>
+                            <x:String>5.6</x:String>
+                            <x:String>5.7</x:String>
+                            <x:String>5.8</x:String>
+                            <x:String>5.9</x:String>
+                            <x:String>5.10a</x:String>
+                            <x:String>5.10b</x:String>
+                            <x:String>5.10c</x:String>
+                            <x:String>5.10d</x:String>
+                            <x:String>5.11a</x:String>
+                            <x:String>5.11b</x:String>
+                            <x:String>5.11c</x:String>
+                            <x:String>5.11d</x:String>
+                            <x:String>5.12a</x:String>
+                            <x:String>5.12b</x:String>
+                            <x:String>5.12c</x:String>
+                            <x:String>5.12d</x:String>
+                            <x:String>5.13a</x:String>
+                            <x:String>5.13b</x:String>
+                            <x:String>5.13c</x:String>
+                            <x:String>5.13d</x:String>
+                            <x:String>5.14a</x:String>
+                            <x:String>5.14b</x:String>
+                            <x:String>5.14c</x:String>
+                            <x:String>5.14d</x:String>
+                            <x:String>5.15a</x:String>
+                            <x:String>5.15b</x:String>
+                            <x:String>5.15c</x:String>
+                            <x:String>5.15d</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />

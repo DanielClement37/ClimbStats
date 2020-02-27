@@ -8,23 +8,26 @@
              x:Class="ClimbStats.Views.SportPage"
              Title="{Binding Title}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="OnSportAddClicked" />
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <Button x:Name="btnCreate" WidthRequest="200" Text="Create" Clicked="OnSportAddClicked" />
-                    <Button x:Name="btnRead" WidthRequest="200" Text="Get All"  Clicked="OnGetAllClicked" />
+                    <!-- graphs Go Here -->
                 </StackLayout>
-                <ListView x:Name="lstSportClimbs" ItemSelected="lstSportClimbs_ItemSelected">
+                <ListView x:Name="lstSportClimbs" ItemSelected="lstSportClimbs_ItemSelected" IsPullToRefreshEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="30">
                                 <StackLayout Padding="5" Orientation="Horizontal">
-                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="True" />
+                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="False" />
                                     <Label x:Name="lbClimbGrade" Text="{Binding Grade}" IsVisible="True" />
-                                    <Label x:Name="lbClimbAttempts" Text="{Binding NumAttempts}" IsVisible="true" />
-                                    <Label x:Name="lbClimbIO" Text="{Binding IsOutdoors}" IsVisible="True" />
-                                    <Label x:Name="lbClimbSendDate" Text="{Binding SendDate}" IsVisible="True" />
+                                    <Label x:Name="lbClimbAttempts" Text="{Binding NumAttempts}" IsVisible="False" />
+                                    <Label x:Name="lbClimbIO" Text="{Binding IsOutdoors}" IsVisible="False" />
+                                    <Label x:Name="lbClimbSendDate" Text="{Binding SendDate}" IsVisible="False" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

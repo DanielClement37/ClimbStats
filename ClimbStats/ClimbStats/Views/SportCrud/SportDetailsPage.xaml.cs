@@ -21,7 +21,7 @@ namespace ClimbStats.Views.SportCrud
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(lbId.Text);
-            var grade = entGrade.Text;
+            var grade = pkGrade.SelectedItem.ToString();
             int numAttempts = Convert.ToInt32(entNumAttempts.Text);
             var isOutdoors = cbIsOutdoors.IsChecked;
 

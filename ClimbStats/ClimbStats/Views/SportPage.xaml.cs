@@ -19,6 +19,13 @@ namespace ClimbStats.Views
         public SportPage()
         {
             InitializeComponent();
+            lstSportClimbs.RefreshCommand = new Command(async () => {
+                //Do your stuff.    
+                List<SportClimb> sportClimbs = await App.SportVM.GetAllSportClimbs();
+
+                lstSportClimbs.ItemsSource = sportClimbs;
+                lstSportClimbs.IsRefreshing = false;
+            });
         }
 
         private async void OnSportAddClicked(object sender, EventArgs e)
@@ -27,13 +34,6 @@ namespace ClimbStats.Views
             {
                 BindingContext = new SportClimb()
             });
-        }
-
-        private async void OnGetAllClicked(object sender, EventArgs e)
-        {
-            List<SportClimb> sportClimbs = await App.SportVM.GetAllSportClimbs();
-
-            lstSportClimbs.ItemsSource = sportClimbs;
         }
 
         private async void lstSportClimbs_ItemSelected(object sender, SelectedItemChangedEventArgs e)

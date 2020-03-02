@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ClimbStats.Views.SpeedCrud.SpeedCreatePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbTopped" Text="Topped?" WidthRequest="200" />
+                <CheckBox x:Name="cbTopped" WidthRequest="200" CheckedChanged="cbTopped_CheckedChanged" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label x:Name="lbTime" Text="Send Time" WidthRequest="200" />
+                <Entry x:Name="enTime" Placeholder="time in seconds" WidthRequest="200" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Button x:Name="btnAdd" WidthRequest="200" Text="Add Climb" Clicked="btnAdd_Clicked" />
+                <Button x:Name="btnCancel" WidthRequest="200" Text="Cancel" Clicked="btnCancel_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

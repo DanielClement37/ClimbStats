@@ -6,32 +6,31 @@
              xmlns:vm="clr-namespace:ClimbStats.ViewModels"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.SpeedPage"
-             Title="{Binding Title}">
+             Title="Speed Climb">
 
-    <ContentPage.BindingContext>
-        <vm:SpeedViewModel />
-    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
-                <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
-                    <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                        <Button x:Name="btnAdd" WidthRequest="200" Text="Add" />
-                        <Button x:Name="btnRead" WidthRequest="200" Text="Get All" />
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                        <Button x:Name="btnUpdate" WidthRequest="200" Text="Update" />
-                        <Button x:Name="btnDelete" WidthRequest="200" Text="Delete" />
-                    </StackLayout>
-                    <ListView x:Name="lstSportClimbs">
-                        <!--<ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell ></TextCell>
-                        </DataTemplate>
-                        </ListView.ItemTemplate> -->
-                    </ListView>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <!-- graphs Go Here -->
                 </StackLayout>
+                <ListView x:Name="lstSpeedClimbs" ItemSelected="lstSpeedClimbs_ItemSelected" IsPullToRefreshEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="30">
+                                <StackLayout Padding="5" Orientation="Horizontal">
+                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="False" />
+                                    <Label x:Name="lbClimbTime" Text="{Binding SendTime}" IsVisible="True" />
+                                    <Label x:Name="lbSent" Text="{Binding Topped}" IsVisible="True" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -9,11 +9,11 @@
         <StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbTopped" Text="Topped?" WidthRequest="200" />
-                <CheckBox x:Name="cbTopped" WidthRequest="200" CheckedChanged="cbTopped_CheckedChanged" />
+                <CheckBox x:Name="cbTopped" WidthRequest="200" CheckedChanged="cbTopped_CheckedChanged" IsChecked="{Binding Topped}"/>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbTime" Text="Send Time" WidthRequest="200" />
-                <Entry x:Name="enTime" Placeholder="time in seconds" WidthRequest="200" />
+                <Entry x:Name="enTime" Text="{Binding SendTime}" WidthRequest="200" />
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Button x:Name="btnSave" WidthRequest="130" Text="Save Climb" Clicked="btnSave_Clicked" />

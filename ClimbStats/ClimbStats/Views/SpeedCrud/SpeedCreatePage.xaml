@@ -9,9 +9,9 @@
         <StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbTopped" Text="Topped?" WidthRequest="200" />
-                <CheckBox x:Name="cbTopped" WidthRequest="200" CheckedChanged="cbTopped_CheckedChanged" />
+                <CheckBox x:Name="cbTopped" WidthRequest="200" CheckedChanged="cbTopped_CheckedChanged" IsChecked="True"/>
             </StackLayout>
-            <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+            <StackLayout x:Name="stTime" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" IsVisible="True">
                 <Label x:Name="lbTime" Text="Send Time" WidthRequest="200" />
                 <Entry x:Name="enTime" Placeholder="time in seconds" WidthRequest="200" />
             </StackLayout>

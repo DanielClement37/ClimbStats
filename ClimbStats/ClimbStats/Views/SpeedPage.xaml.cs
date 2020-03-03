@@ -17,6 +17,13 @@ namespace ClimbStats.Views
         public SpeedPage()
         {
             InitializeComponent();
+            lstSpeedClimbs.RefreshCommand = new Command(async () => {
+                //Do your stuff.    
+                List<SpeedClimb> sportClimbs = await App.SpeedVM.GetAllSpeedClimbs();
+
+                lstSpeedClimbs.ItemsSource = sportClimbs;
+                lstSpeedClimbs.IsRefreshing = false;
+            });
         }
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -27,8 +34,10 @@ namespace ClimbStats.Views
             });
         }
 
-        private void lstSpeedClimbs_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void lstSpeedClimbs_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            var data = lstSpeedClimbs.SelectedItem;
+            await Navigation.PushAsync(new SpeedDetailsPage() { BindingContext = data });
         }
     }
 }

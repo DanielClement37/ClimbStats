@@ -13,6 +13,7 @@ namespace ClimbStats
 
         public static SportViewModel SportVM { get; private set; }
         public static BoulderViewModel BoulderVM { get; private set; }
+        public static SpeedViewModel SpeedVM { get; private set; }
 
         public App()
         {
@@ -20,6 +21,7 @@ namespace ClimbStats
 
             SportVM = new SportViewModel(dbPath);
             BoulderVM = new BoulderViewModel(dbPath);
+            SpeedVM = new SpeedViewModel(dbPath);
 
             MainPage = new MainPage();
         }

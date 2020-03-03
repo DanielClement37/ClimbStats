@@ -23,7 +23,7 @@
                         <DataTemplate>
                             <ViewCell Height="30">
                                 <StackLayout Padding="5" Orientation="Horizontal">
-                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="False" />
+                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="True" />
                                     <Label x:Name="lbClimbTime" Text="{Binding SendTime}" IsVisible="True" />
                                     <Label x:Name="lbSent" Text="{Binding Topped}" IsVisible="True" />
                                 </StackLayout>

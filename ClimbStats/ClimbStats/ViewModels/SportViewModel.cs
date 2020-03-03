@@ -48,8 +48,30 @@ namespace ClimbStats.ViewModels
             return new SportClimb();
         }
 
+        //Get Climb Grades as int for graph
+        public async Task<List<int>> GetAllClimbInt()
+        {
+            List<int> climbGrades = new List<int>();
+            try
+            {
+                var temp = await conn.Table<SportClimb>().ToListAsync();
+
+                foreach (SportClimb c in temp)
+                {
+                    climbGrades.Add(c.GradeInt);
+                }
+
+                return climbGrades;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<int>();
+        }
+
         //Add climb
-        public async Task AddSportClimb(int numAttempts, KeyValuePair<int,string> grade, bool isOutdoors)
+        public async Task AddSportClimb(int numAttempts, KeyValuePair<int, string> grade, bool isOutdoors)
         {
             int result = 0;
 
@@ -93,7 +115,7 @@ namespace ClimbStats.ViewModels
         }
 
         //Edit Climb
-        public async Task EditSportClimb(int id, int numAttempts, KeyValuePair<int,string> grade, bool isOutdoors)
+        public async Task EditSportClimb(int id, int numAttempts, KeyValuePair<int, string> grade, bool isOutdoors)
         {
             try
             {

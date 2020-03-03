@@ -49,7 +49,7 @@ namespace ClimbStats.ViewModels
         }
 
         //Add climb
-        public async Task AddSportClimb(int numAttempts, string grade, bool isOutdoors)
+        public async Task AddSportClimb(int numAttempts, KeyValuePair<int,string> grade, bool isOutdoors)
         {
             int result = 0;
 
@@ -57,7 +57,8 @@ namespace ClimbStats.ViewModels
             {
                 SendDate = DateTime.Today,
                 NumAttempts = numAttempts,
-                Grade = grade,
+                GradeText = grade.Value,
+                GradeInt = grade.Key,
                 IsOutdoors = isOutdoors
             };
 
@@ -67,7 +68,7 @@ namespace ClimbStats.ViewModels
                 {
                     result = await conn.InsertAsync(climb);
 
-                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, climb.SendDate, climb.NumAttempts, climb.Grade, climb.IsOutdoors);
+                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, climb.SendDate, climb.NumAttempts, climb.GradeText, climb.IsOutdoors);
                 }
             }
             catch (Exception ex)
@@ -92,13 +93,14 @@ namespace ClimbStats.ViewModels
         }
 
         //Edit Climb
-        public async Task EditSportClimb(int id, int numAttempts, string grade, bool isOutdoors)
+        public async Task EditSportClimb(int id, int numAttempts, KeyValuePair<int,string> grade, bool isOutdoors)
         {
             try
             {
                 var climb = await conn.Table<SportClimb>().FirstOrDefaultAsync(x => x.Id == id);
 
-                climb.Grade = grade;
+                climb.GradeInt = grade.Key;
+                climb.GradeText = grade.Value;
                 climb.IsOutdoors = isOutdoors;
                 climb.NumAttempts = numAttempts;
 
@@ -109,7 +111,7 @@ namespace ClimbStats.ViewModels
             }
             catch (Exception ex)
             {
-                StatusMessage = string.Format("Failed to update {0}. Error: {1}", grade, ex.Message);
+                StatusMessage = string.Format("Failed to update {0}. Error: {1}", grade.Value, ex.Message);
             }
         }
 

@@ -17,7 +17,17 @@
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <!-- graphs Go Here -->
+                    <ultimateChart:SupportLineChartExtended  
+	                    x:Name="chart"  
+                        HorizontalOptions="FillAndExpand"  
+                        VerticalOptions="FillAndExpand"  
+                        DrawBorders="false"  
+                        DoubleTapToZoomEnabled="false" 
+                        WidthRequest="400"
+                        HeightRequest="150"/>
+                </StackLayout>
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Label Text="Climb List" HorizontalOptions="Center" />
                 </StackLayout>
                 <ListView x:Name="lstSportClimbs" ItemSelected="lstSportClimbs_ItemSelected" IsPullToRefreshEnabled="True">
                     <ListView.ItemTemplate>
@@ -25,7 +35,8 @@
                             <ViewCell Height="30">
                                 <StackLayout Padding="5" Orientation="Horizontal">
                                     <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="False" />
-                                    <Label x:Name="lbClimbGrade" Text="{Binding Grade}" IsVisible="True" />
+                                    <Label x:Name="lbClimbGrade" Text="{Binding GradeText}" IsVisible="True" />
+                                    <Label x:Name="lbClimbGradeInt" Text="{Binding GradeInt}" IsVisible="False" />
                                     <Label x:Name="lbClimbAttempts" Text="{Binding NumAttempts}" IsVisible="False" />
                                     <Label x:Name="lbClimbIO" Text="{Binding IsOutdoors}" IsVisible="False" />
                                     <Label x:Name="lbClimbSendDate" Text="{Binding SendDate}" IsVisible="False" />

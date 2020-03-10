@@ -70,6 +70,28 @@ namespace ClimbStats.ViewModels
             return new List<int>();
         }
 
+        //Get Climb Grades as int for graph
+        public async Task<List<string>> GetAllClimbText()
+        {
+            List<string> climbGrades = new List<string>();
+            try
+            {
+                var temp = await conn.Table<SportClimb>().ToListAsync();
+
+                foreach (SportClimb c in temp)
+                {
+                    climbGrades.Add(c.GradeText);
+                }
+
+                return climbGrades;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<string>();
+        }
+
         //Add climb
         public async Task AddSportClimb(int numAttempts, KeyValuePair<int, string> grade, bool isOutdoors)
         {

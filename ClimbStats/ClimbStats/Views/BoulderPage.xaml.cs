@@ -17,15 +17,16 @@ namespace ClimbStats.Views
         public BoulderPage()
         {
             InitializeComponent();
+        }
 
-            lstBoulders.RefreshCommand = new Command(async () =>
-            {
-                //Do your stuff.
-                List<Boulder> sportClimbs = await App.BoulderVM.GetAllBoulders();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
 
-                lstBoulders.ItemsSource = sportClimbs;
-                lstBoulders.IsRefreshing = false;
-            });
+            List<Boulder> boulders = await App.BoulderVM.GetAllBoulders();
+
+            lstBoulders.ItemsSource = boulders;
+            lstBoulders.IsRefreshing = false;
         }
 
         private async void ToolbarItem_Clicked(object sender, EventArgs e)

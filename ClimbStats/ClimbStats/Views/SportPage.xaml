@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ClimbStats.ViewModels"
-             xmlns:ultimateChart="clr-namespace:UltimateXF.Widget.Charts;assembly=UltimateXF"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.SportPage"
              Title="Sport Climbing Stats">
@@ -12,24 +12,19 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="OnSportAddClicked" />
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
-                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <ultimateChart:SupportLineChartExtended  
-	                    x:Name="chart"  
-                        HorizontalOptions="FillAndExpand"  
-                        VerticalOptions="FillAndExpand"  
-                        DrawBorders="false"  
-                        DoubleTapToZoomEnabled="false" 
-                        WidthRequest="400"
-                        HeightRequest="150"/>
-                </StackLayout>
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <microcharts:ChartView x:Name="chDiffOverTime" WidthRequest="400" HeightRequest="200" />
+                    </StackLayout>
+                </ScrollView>
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                     <Label Text="Climb List" HorizontalOptions="Center" />
                 </StackLayout>
-                <ListView x:Name="lstSportClimbs" ItemSelected="lstSportClimbs_ItemSelected" IsPullToRefreshEnabled="True">
+                <ListView x:Name="lstSportClimbs" ItemSelected="lstSportClimbs_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="30">

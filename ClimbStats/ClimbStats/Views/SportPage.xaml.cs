@@ -29,6 +29,7 @@ namespace ClimbStats.Views
             lstSportClimbs.IsRefreshing = false;
 
             UpdateDiffTimeGraph();
+            UpdateAttemptGradeGtaph();
         }
 
         private async void OnSportAddClicked(object sender, EventArgs e)
@@ -68,9 +69,34 @@ namespace ClimbStats.Views
                 Entries = entries,
                 LineMode = LineMode.Straight,
                 PointMode = PointMode.Square,
+                BackgroundColor = SKColor.Empty,
+                LabelTextSize = 35f
+            };
+        }
+
+        private async void UpdateAttemptGradeGtaph()
+        {
+            var labels = await App.SportVM.GetGradesClimbed();
+            var data = await App.SportVM.GetAvgNumAttempts();
+            var entries = new List<Microcharts.Entry>();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                var index = i + 1;
+                entries.Add(new Microcharts.Entry((float)data[i])
+                {
+                    Label = labels[i],
+                    ValueLabel = data[i].ToString(),
+                    Color = SKColor.Parse("#68B9C0")
+                });
+            }
+
+            chAttemptsPerGrade.Chart = new BarChart
+            {
+                Entries = entries,
+                LabelTextSize = 35f,
                 BackgroundColor = SKColor.Empty
             };
-            chDiffOverTime.Chart.LabelTextSize = 35f;
         }
     }
 }

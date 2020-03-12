@@ -69,7 +69,7 @@ namespace ClimbStats.ViewModels
             return new List<int>();
         }
 
-        //Get Climb Grades as int for graph
+        //Get Climb Grades as string for graph
         public async Task<List<string>> GetAllClimbText()
         {
             List<string> climbGrades = new List<string>();
@@ -83,6 +83,80 @@ namespace ClimbStats.ViewModels
                 }
 
                 return climbGrades;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<string>();
+        }
+
+        //Get average number of attempts per climbing grade
+        //TODO: MAKE MORE EFFICIENT!!!
+        public async Task<List<double>> GetAvgNumAttempts()
+        {
+            List<double> averages = new List<double>();
+
+            List<string> distinctClimbs = new List<string>();
+            Dictionary<string, int> totals = new Dictionary<string, int>();
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+            
+            try
+            {
+                var temp = await conn.Table<SportClimb>().ToListAsync();
+                
+                foreach (SportClimb c in temp)
+                {
+                    if (distinctClimbs.Contains(c.GradeText)) 
+                    {
+                        totals[c.GradeText] = totals[c.GradeText] += c.NumAttempts;
+                        counts[c.GradeText]++;
+                    }
+                    else 
+                    {
+                        distinctClimbs.Add(c.GradeText);
+                        totals.Add(c.GradeText, c.NumAttempts);
+                        counts.Add(c.GradeText, 1);
+                    }
+                    
+                }
+
+                foreach(var t in totals)
+                {
+                    var total = t.Value;
+                    var count = counts[t.Key];
+                    averages.Add((double)total / (double)count);
+                }
+
+                return averages;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<double>();
+        }
+
+        //Get Climb Grades as int for graph
+        public async Task<List<string>> GetGradesClimbed()
+        {
+            List<string> DistinctGrades = new List<string>();
+            HashSet<string> gradesClimbed = new HashSet<string>();
+            try
+            {
+                var temp = await conn.Table<SportClimb>().ToListAsync();
+
+                foreach (SportClimb c in temp)
+                {
+                    gradesClimbed.Add(c.GradeText);
+                }
+
+                foreach(string g in gradesClimbed)
+                {
+                    DistinctGrades.Add(g);
+                }
+
+                return DistinctGrades;
             }
             catch (Exception ex)
             {

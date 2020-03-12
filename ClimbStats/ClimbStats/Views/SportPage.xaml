@@ -20,9 +20,11 @@
                     <Label Text="Difficulty over Time graph" HorizontalOptions="Center" />
                     <microcharts:ChartView x:Name="chDiffOverTime" WidthRequest="400" HeightRequest="200" />
                 </StackLayout>
-                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <Label Text="Climb List" HorizontalOptions="Center" />
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Label Text="Number of attempts per grade" HorizontalOptions="Center" />
+                    <microcharts:ChartView x:Name="chAttemptsPerGrade" WidthRequest="400" HeightRequest="200" />
                 </StackLayout>
+                <Label Text="Climb List" HorizontalOptions="Center" />
                 <ListView x:Name="lstSportClimbs" ItemSelected="lstSportClimbs_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>

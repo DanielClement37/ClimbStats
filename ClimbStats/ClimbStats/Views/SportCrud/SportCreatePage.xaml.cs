@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClimbStats.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ClimbStats.ViewModels;
 
 namespace ClimbStats.Views.SportCrud
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SportCreatePage : ContentPage
     {
-        Dictionary<int, string> climbGrades = new Dictionary<int, string>
+        private Dictionary<int, string> climbGrades = new Dictionary<int, string>
         {
             {0,"5.5" },{1,"5.6" },{2,"5.7" },{3,"5.8" },{4,"5.9" },
             {5,"5.10a" },{6,"5.10b" },{7,"5.10c" },{8,"5.10d" },
@@ -28,11 +24,10 @@ namespace ClimbStats.Views.SportCrud
         {
             InitializeComponent();
 
-            foreach(string grade in climbGrades.Values)
+            foreach (string grade in climbGrades.Values)
             {
                 pkGrade.Items.Add(grade);
             }
-
         }
 
         private async void btnAdd_Clicked(object sender, EventArgs e)
@@ -40,7 +35,7 @@ namespace ClimbStats.Views.SportCrud
             var grade = climbGrades.SingleOrDefault(p => p.Key == pkGrade.SelectedIndex);
             int numAttempts = Convert.ToInt32(entNumAttempts.Text);
             var isOutdoors = cbIsOutdoors.IsChecked;
-            
+
             await App.SportVM.AddSportClimb(numAttempts, grade, isOutdoors);
 
             await Navigation.PopAsync();

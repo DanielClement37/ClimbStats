@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
-using Xamarin.Forms;
-
-using ClimbStats.Models;
 
 namespace ClimbStats.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         public virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         }
+
         public BaseViewModel()
         {
-
         }
 
-        string title = string.Empty;
+        private string title = string.Empty;
+
         public string Title
         {
             get { return title; }
@@ -30,15 +25,13 @@ namespace ClimbStats.ViewModels
         }
     }
 
-    //{ 
+    //{
     //    bool isBusy = false;
     //    public bool IsBusy
     //    {
     //        get { return isBusy; }
     //        set { SetProperty(ref isBusy, value); }
     //    }
-
-
 
     //    protected bool SetProperty<T>(ref T backingStore, T value,
     //        [CallerMemberName]string propertyName = "",

@@ -1,25 +1,17 @@
 ﻿using ClimbStats.Models;
-using ClimbStats.Services;
-using ClimbStats.ViewModels;
 using ClimbStats.Views.SportCrud;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microcharts.Forms;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Microcharts;
 using SkiaSharp;
+using System;
+using System.Collections.Generic;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace ClimbStats.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SportPage : ContentPage
     {
-
         public SportPage()
         {
             InitializeComponent();
@@ -55,12 +47,12 @@ namespace ClimbStats.Views
 
         private async void UpdateDiffTimeGraph()
         {
-            var labels = await  App.SportVM.GetAllClimbText();
+            var labels = await App.SportVM.GetAllClimbText();
             var data = await App.SportVM.GetAllClimbInt();
 
             var entries = new List<Microcharts.Entry>();
 
-            for(int i = 0; i < data.Count; i++)
+            for (int i = 0; i < data.Count; i++)
             {
                 var index = i + 1;
                 entries.Add(new Microcharts.Entry(data[i])
@@ -71,7 +63,14 @@ namespace ClimbStats.Views
                 });
             }
 
-            chDiffOverTime.Chart = new LineChart() { Entries = entries };
+            chDiffOverTime.Chart = new LineChart
+            {
+                Entries = entries,
+                LineMode = LineMode.Straight,
+                PointMode = PointMode.Square,
+                BackgroundColor = SKColor.Empty
+            };
+            chDiffOverTime.Chart.LabelTextSize = 35f;
         }
     }
 }

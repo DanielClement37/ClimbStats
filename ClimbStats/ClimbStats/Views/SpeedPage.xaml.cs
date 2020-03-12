@@ -2,9 +2,6 @@
 using ClimbStats.Views.SpeedCrud;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,8 +14,9 @@ namespace ClimbStats.Views
         public SpeedPage()
         {
             InitializeComponent();
-            lstSpeedClimbs.RefreshCommand = new Command(async () => {
-                //Do your stuff.    
+            lstSpeedClimbs.RefreshCommand = new Command(async () =>
+            {
+                //Do your stuff.
                 List<SpeedClimb> sportClimbs = await App.SpeedVM.GetAllSpeedClimbs();
 
                 lstSpeedClimbs.ItemsSource = sportClimbs;

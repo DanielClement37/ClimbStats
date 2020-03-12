@@ -17,7 +17,7 @@
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                     <!-- graphs Go Here -->
                 </StackLayout>
-                <ListView x:Name="lstBoulders" ItemSelected="lstBoulders_ItemSelected" IsPullToRefreshEnabled="True">
+                <ListView x:Name="lstBoulders" ItemSelected="lstBoulders_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="30">

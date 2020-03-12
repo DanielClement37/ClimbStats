@@ -16,11 +16,10 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
-                <ScrollView Orientation="Horizontal">
-                    <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                        <microcharts:ChartView x:Name="chDiffOverTime" WidthRequest="400" HeightRequest="200" />
-                    </StackLayout>
-                </ScrollView>
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Label Text="Difficulty over Time graph" HorizontalOptions="Center" />
+                    <microcharts:ChartView x:Name="chDiffOverTime" WidthRequest="400" HeightRequest="200" />
+                </StackLayout>
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                     <Label Text="Climb List" HorizontalOptions="Center" />
                 </StackLayout>

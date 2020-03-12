@@ -15,11 +15,10 @@
                 <Picker x:Name="pkGrade"
                         Title="Select a Grade">
                 </Picker>
-
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entNumAttempts" Placeholder="ex) 1" WidthRequest="200" />
+                <Entry x:Name="entNumAttempts" Text="1" WidthRequest="200" />
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Route" FontSize="Medium" WidthRequest="200" />

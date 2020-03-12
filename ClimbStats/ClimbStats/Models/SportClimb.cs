@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SQLite;
+﻿using SQLite;
+using System;
 
 namespace ClimbStats.Models
 {
@@ -15,6 +13,7 @@ namespace ClimbStats.Models
 
         [MaxLength(5)]
         public string GradeText { get; set; }
+
         public int GradeInt { get; set; }
 
         public int NumAttempts { get; set; }

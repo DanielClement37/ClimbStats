@@ -1,9 +1,7 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using ClimbStats.Views;
+﻿using ClimbStats.Services;
 using ClimbStats.ViewModels;
-using ClimbStats.Services;
+using ClimbStats.Views;
+using Xamarin.Forms;
 
 namespace ClimbStats
 {

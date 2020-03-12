@@ -1,5 +1,4 @@
 ﻿using ClimbStats.Models;
-using ClimbStats.Services;
 using SQLite;
 using System;
 using System.Collections.Generic;

@@ -47,8 +47,165 @@ namespace ClimbStats.ViewModels
             return new Boulder();
         }
 
+        //Get Climb Grades as int for graph
+        public async Task<List<int>> GetAllClimbInt()
+        {
+            List<int> climbGrades = new List<int>();
+            try
+            {
+                var temp = await conn.Table<Boulder>().ToListAsync();
+
+                foreach (Boulder c in temp)
+                {
+                    climbGrades.Add(c.GradeInt);
+                }
+
+                return climbGrades;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<int>();
+        }
+
+        //Get Climb Grades as string for graph
+        public async Task<List<string>> GetAllClimbText()
+        {
+            List<string> climbGrades = new List<string>();
+            try
+            {
+                var temp = await conn.Table<Boulder>().ToListAsync();
+
+                foreach (Boulder c in temp)
+                {
+                    climbGrades.Add(c.GradeText);
+                }
+
+                return climbGrades;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<string>();
+        }
+
+        //Get average number of attempts per climbing grade
+        //TODO: MAKE MORE EFFICIENT!!!
+        public async Task<List<double>> GetAvgNumAttempts()
+        {
+            List<double> averages = new List<double>();
+
+            List<string> distinctClimbs = new List<string>();
+            Dictionary<string, int> totals = new Dictionary<string, int>();
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+
+            try
+            {
+                var temp = await conn.Table<Boulder>().ToListAsync();
+
+                foreach (Boulder c in temp)
+                {
+                    if (distinctClimbs.Contains(c.GradeText))
+                    {
+                        totals[c.GradeText] = totals[c.GradeText] += c.NumAttempts;
+                        counts[c.GradeText]++;
+                    }
+                    else
+                    {
+                        distinctClimbs.Add(c.GradeText);
+                        totals.Add(c.GradeText, c.NumAttempts);
+                        counts.Add(c.GradeText, 1);
+                    }
+                }
+
+                foreach (var t in totals)
+                {
+                    var total = t.Value;
+                    var count = counts[t.Key];
+                    averages.Add((double)total / (double)count);
+                }
+
+                return averages;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<double>();
+        }
+
+        //Get Climb Grades as int for graph
+        public async Task<List<string>> GetGradesClimbed()
+        {
+            List<string> DistinctGrades = new List<string>();
+            HashSet<string> gradesClimbed = new HashSet<string>();
+            try
+            {
+                var temp = await conn.Table<Boulder>().ToListAsync();
+
+                foreach (Boulder c in temp)
+                {
+                    gradesClimbed.Add(c.GradeText);
+                }
+
+                foreach (string g in gradesClimbed)
+                {
+                    DistinctGrades.Add(g);
+                }
+
+                return DistinctGrades;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<string>();
+        }
+
+        //Get number of climbs sent at each grade
+        //make more effiecent
+        public async Task<List<int>> GetGradeCount()
+        {
+
+            List<int> NumClimbed = new List<int>();
+
+            List<string> distinctClimbs = new List<string>();
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+            try
+            {
+                var temp = await conn.Table<Boulder>().ToListAsync();
+
+                foreach (Boulder c in temp)
+                {
+                    if (distinctClimbs.Contains(c.GradeText))
+                    {
+                        counts[c.GradeText]++;
+                    }
+                    else
+                    {
+                        distinctClimbs.Add(c.GradeText);
+                        counts.Add(c.GradeText, 1);
+                    }
+                }
+
+                foreach (var c in counts)
+                {
+                    NumClimbed.Add(c.Value);
+                }
+
+                return NumClimbed;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<int>();
+        }
+
         //Add climb
-        public async Task AddBoulder(int numAttempts, string grade, bool isOutdoors)
+        public async Task AddBoulder(int numAttempts, KeyValuePair<int, string> grade, bool isOutdoors)
         {
             int result = 0;
 
@@ -56,7 +213,8 @@ namespace ClimbStats.ViewModels
             {
                 SendDate = DateTime.Today,
                 NumAttempts = numAttempts,
-                Grade = grade,
+                GradeText = grade.Value,
+                GradeInt = grade.Key,
                 IsOutdoors = isOutdoors
             };
 
@@ -66,7 +224,7 @@ namespace ClimbStats.ViewModels
                 {
                     result = await conn.InsertAsync(climb);
 
-                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, climb.SendDate, climb.NumAttempts, climb.Grade, climb.IsOutdoors);
+                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, climb.SendDate, climb.NumAttempts, climb.GradeText, climb.IsOutdoors);
                 }
             }
             catch (Exception ex)
@@ -91,13 +249,14 @@ namespace ClimbStats.ViewModels
         }
 
         //Edit Climb
-        public async Task EditBoulder(int id, int numAttempts, string grade, bool isOutdoors)
+        public async Task EditBoulder(int id, int numAttempts, KeyValuePair<int, string> grade, bool isOutdoors)
         {
             try
             {
                 var climb = await conn.Table<Boulder>().FirstOrDefaultAsync(x => x.Id == id);
 
-                climb.Grade = grade;
+                climb.GradeInt = grade.Key;
+                climb.GradeText = grade.Value;
                 climb.IsOutdoors = isOutdoors;
                 climb.NumAttempts = numAttempts;
 

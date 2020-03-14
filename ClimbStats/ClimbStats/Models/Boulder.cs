@@ -12,7 +12,9 @@ namespace ClimbStats.Models
         public DateTime SendDate { get; set; }
 
         [MaxLength(5)]
-        public string Grade { get; set; }
+        public string GradeText { get; set; }
+
+        public int GradeInt { get; set; }
 
         public int NumAttempts { get; set; }
         public bool IsOutdoors { get; set; }

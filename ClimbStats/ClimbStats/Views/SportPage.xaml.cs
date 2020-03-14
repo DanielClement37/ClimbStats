@@ -30,6 +30,7 @@ namespace ClimbStats.Views
 
             UpdateDiffTimeGraph();
             UpdateAttemptGradeGtaph();
+            UpdateGradeCountGraph();
         }
 
         private async void OnSportAddClicked(object sender, EventArgs e)
@@ -82,7 +83,6 @@ namespace ClimbStats.Views
 
             for (int i = 0; i < data.Count; i++)
             {
-                var index = i + 1;
                 entries.Add(new Microcharts.Entry((float)data[i])
                 {
                     Label = labels[i],
@@ -92,6 +92,30 @@ namespace ClimbStats.Views
             }
 
             chAttemptsPerGrade.Chart = new BarChart
+            {
+                Entries = entries,
+                LabelTextSize = 35f,
+                BackgroundColor = SKColor.Empty
+            };
+        }
+
+        private async void UpdateGradeCountGraph()
+        {
+            var labels = await App.SportVM.GetGradesClimbed();
+            var data = await App.SportVM.GetGradeCount();
+            var entries = new List<Microcharts.Entry>();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                entries.Add(new Microcharts.Entry((float)data[i])
+                {
+                    Label = labels[i],
+                    ValueLabel = data[i].ToString(),
+                    Color = SKColor.Parse("#68B9C0")
+                });
+            }
+
+            chGradeCount.Chart = new BarChart
             {
                 Entries = entries,
                 LabelTextSize = 35f,

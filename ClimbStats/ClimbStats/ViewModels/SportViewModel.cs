@@ -118,7 +118,6 @@ namespace ClimbStats.ViewModels
                         totals.Add(c.GradeText, c.NumAttempts);
                         counts.Add(c.GradeText, 1);
                     }
-                    
                 }
 
                 foreach(var t in totals)
@@ -163,6 +162,46 @@ namespace ClimbStats.ViewModels
                 StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
             }
             return new List<string>();
+        }
+
+        //Get number of climbs sent at each grade
+        //make more effiecent
+        public async Task<List<int>> GetGradeCount()
+        {
+
+            List<int> NumClimbed = new List<int>();
+
+            List<string> distinctClimbs = new List<string>();
+            Dictionary<string, int> counts = new Dictionary<string, int>();
+            try
+            {
+                var temp = await conn.Table<SportClimb>().ToListAsync();
+
+                foreach (SportClimb c in temp)
+                {
+                    if (distinctClimbs.Contains(c.GradeText))
+                    {
+                        counts[c.GradeText]++;
+                    }
+                    else
+                    {
+                        distinctClimbs.Add(c.GradeText);
+                        counts.Add(c.GradeText, 1);
+                    }
+                }
+
+                foreach(var c in counts)
+                {
+                    NumClimbed.Add(c.Value);
+                }
+
+                return NumClimbed;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<int>();
         }
 
         //Add climb

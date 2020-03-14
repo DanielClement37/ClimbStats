@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ClimbStats.ViewModels"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.BoulderPage"
              Title="Boulder Stats">
@@ -12,10 +13,19 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
-                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <!-- graphs Go Here -->
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Label Text="Difficulty over Time graph" HorizontalOptions="Center" />
+                    <microcharts:ChartView x:Name="chDiffOverTime" WidthRequest="400" HeightRequest="200" />
+                </StackLayout>
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Label Text="Average number of attempts per grade" HorizontalOptions="Center" Visual="Material" />
+                    <microcharts:ChartView x:Name="chAttemptsPerGrade" WidthRequest="400" HeightRequest="200" />
+                </StackLayout>
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Label Text="Number of climbs sent at each grade" HorizontalOptions="Center" Visual="Material" />
+                    <microcharts:ChartView x:Name="chGradeCount" WidthRequest="400" HeightRequest="200" />
                 </StackLayout>
                 <ListView x:Name="lstBoulders" ItemSelected="lstBoulders_ItemSelected">
                     <ListView.ItemTemplate>
@@ -23,7 +33,7 @@
                             <ViewCell Height="30">
                                 <StackLayout Padding="5" Orientation="Horizontal">
                                     <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="False" />
-                                    <Label x:Name="lbClimbGrade" Text="{Binding Grade}" IsVisible="True" />
+                                    <Label x:Name="lbClimbGrade" Text="{Binding GradeText}" IsVisible="True" />
                                     <Label x:Name="lbClimbAttempts" Text="{Binding NumAttempts}" IsVisible="False" />
                                     <Label x:Name="lbClimbIO" Text="{Binding IsOutdoors}" IsVisible="False" />
                                     <Label x:Name="lbClimbSendDate" Text="{Binding SendDate}" IsVisible="False" />
@@ -33,6 +43,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

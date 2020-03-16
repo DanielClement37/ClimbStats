@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ClimbStats.ViewModels"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.SpeedPage"
              Title="Speed Climb">
@@ -13,25 +14,31 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
             <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                    <!-- graphs Go Here -->
+                    <Label Text="Personal Best Time:" WidthRequest="200" />
+                    <Label x:Name="lbBestTime" WidthRequest="200"/>
                 </StackLayout>
-                <ListView x:Name="lstSpeedClimbs" ItemSelected="lstSpeedClimbs_ItemSelected" IsPullToRefreshEnabled="True">
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Label Text="Speed Times Over Time" HorizontalOptions="Center"/>
+                    <microcharts:ChartView x:Name="chSpeedOverTime" WidthRequest="400" HeightRequest="200" />
+                </StackLayout>
+                <Label Text="All Speed Times" HorizontalOptions="Center"/>
+                <ListView x:Name="lstSpeedClimbs" ItemSelected="lstSpeedClimbs_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="30">
                                 <StackLayout Padding="5" Orientation="Horizontal">
-                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="True" />
+                                    <Label x:Name="lbClimbId" Text="{Binding Id}" IsVisible="False" />
+                                    <Label Text="Time: "/>
                                     <Label x:Name="lbClimbTime" Text="{Binding SendTime}" IsVisible="True" />
-                                    <Label x:Name="lbSent" Text="{Binding Topped}" IsVisible="True" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

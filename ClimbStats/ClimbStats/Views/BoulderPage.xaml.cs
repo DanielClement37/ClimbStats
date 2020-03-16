@@ -23,6 +23,7 @@ namespace ClimbStats.Views
             base.OnAppearing();
 
             List<Boulder> boulders = await App.BoulderVM.GetAllBoulders();
+            boulders.Reverse();
 
             lstBoulders.ItemsSource = boulders;
             lstBoulders.IsRefreshing = false;

@@ -13,34 +13,14 @@ namespace ClimbStats.Views.SpeedCrud
             InitializeComponent();
         }
 
-        private void cbTopped_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            if (!cbTopped.IsChecked)
-            {
-                stTime.IsVisible = false;
-            }
-            else
-            {
-                stTime.IsVisible = true;
-            }
-        }
-
         private async void btnAdd_Clicked(object sender, EventArgs e)
         {
-            var topped = cbTopped.IsChecked;
-            double? time = null;
+            double time;
 
-            if (topped)
-            {
-                time = Convert.ToDouble(enTime.Text);
-                await App.SpeedVM.AddSpeedClimb(time, topped);
+              time = Convert.ToDouble(enTime.Text);
+                await App.SpeedVM.AddSpeedClimb(time);
                 await Navigation.PopAsync();
-            }
-            else
-            {
-                await App.SpeedVM.AddSpeedClimb(time, topped);
-                await Navigation.PopAsync();
-            }
+            
         }
 
         private async void btnCancel_Clicked(object sender, EventArgs e)

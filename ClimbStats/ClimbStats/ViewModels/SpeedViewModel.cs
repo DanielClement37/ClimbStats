@@ -47,16 +47,68 @@ namespace ClimbStats.ViewModels
             return new SpeedClimb();
         }
 
+        //Get Fastest Climb
+        //TODO: Change from bubbleSort
+        public async Task<double> GetFastest()
+        {
+            try
+            {
+                double temp;
+                var climbs = await conn.Table<SpeedClimb>().ToListAsync();
+
+                for (int i = 0; i <= climbs.Count - 2; i++)
+                {
+                    for (int j = 0; j <= climbs.Count - 2; j++)
+                    {
+                        if (climbs[j].SendTime > climbs[j + 1].SendTime)
+                        {
+                            temp = climbs[j + 1].SendTime;
+                            climbs[j + 1].SendTime = climbs[j].SendTime;
+                            climbs[j].SendTime = temp;
+                        }
+                    }
+                }
+
+                return climbs[0].SendTime;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new double();
+        }
+
+        //Get List of speed times
+        public async Task<List<double>> GetAllTImes()
+        {
+            try
+            {
+                List<double> times = new List<double>();
+                var climbs = await conn.Table<SpeedClimb>().ToListAsync();
+
+                foreach(SpeedClimb c in climbs)
+                {
+                    times.Add(c.SendTime);
+                }
+
+                return times;
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new List<double>();
+        }
+
         //Add climb
-        public async Task AddSpeedClimb(double? time, bool topped)
+        public async Task AddSpeedClimb(double time)
         {
             int result = 0;
 
             var climb = new SpeedClimb
             {
                 SendDate = DateTime.Today,
-                SendTime = time,
-                Topped = topped
+                SendTime = time
             };
 
             try
@@ -65,7 +117,7 @@ namespace ClimbStats.ViewModels
                 {
                     result = await conn.InsertAsync(climb);
 
-                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nSent: {2}\nTime: {3}]", result, climb.SendDate, climb.Topped, climb.SendTime);
+                    StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nTime: {2}]", result, climb.SendDate, climb.SendTime);
                 }
             }
             catch (Exception ex)
@@ -90,13 +142,12 @@ namespace ClimbStats.ViewModels
         }
 
         //Edit Climb
-        public async Task EditSpeedClimb(int id, double? time, bool topped)
+        public async Task EditSpeedClimb(int id, double time)
         {
             try
             {
                 var climb = await conn.Table<SpeedClimb>().FirstOrDefaultAsync(x => x.Id == id);
                 climb.SendTime = time;
-                climb.Topped = topped;
 
                 if (ClimbValidation(climb))
                 {

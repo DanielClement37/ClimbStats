@@ -16,21 +16,13 @@ namespace ClimbStats.Views.SpeedCrud
 
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
-            var topped = cbTopped.IsChecked;
             int id = Convert.ToInt32(lbId.Text);
-            double? time = null;
+            double time;
 
-            if (topped)
-            {
+            
                 time = Convert.ToDouble(enTime.Text);
-                await App.SpeedVM.EditSpeedClimb(id,time, topped);
+                await App.SpeedVM.EditSpeedClimb(id,time);
                 await Navigation.PopAsync();
-            }
-            else
-            {
-                await App.SpeedVM.AddSpeedClimb(time, topped);
-                await Navigation.PopAsync();
-            }
         }
 
         private async void btnDelete_Clicked(object sender, EventArgs e)

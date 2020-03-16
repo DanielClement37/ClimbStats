@@ -11,7 +11,6 @@ namespace ClimbStats.Models
 
         public DateTime SendDate { get; set; }
 
-        public double? SendTime { get; set; }
-        public bool Topped { get; set; }
+        public double SendTime { get; set; }
     }
 }

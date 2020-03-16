@@ -21,7 +21,7 @@
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entNumAttempts" Text="{Binding NumAttempts}" WidthRequest="200" />
+                <Entry x:Name="entNumAttempts" Text="{Binding NumAttempts}" WidthRequest="200" Keyboard="Numeric" />
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Boulder" FontSize="Medium" WidthRequest="200" />

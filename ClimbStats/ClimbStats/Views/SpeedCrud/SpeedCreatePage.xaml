@@ -9,7 +9,7 @@
         <StackLayout>
             <StackLayout x:Name="stTime" HorizontalOptions="CenterAndExpand" Orientation="Horizontal" IsVisible="True">
                 <Label x:Name="lbTime" Text="Send Time" WidthRequest="200" />
-                <Entry x:Name="enTime" Placeholder="time in seconds" WidthRequest="200" />
+                <Entry x:Name="enTime" Placeholder="time in seconds" WidthRequest="200" Keyboard="Numeric"/>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Button x:Name="btnAdd" WidthRequest="200" Text="Add Climb" Clicked="btnAdd_Clicked" />

@@ -13,7 +13,7 @@
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbTime" Text="Send Time" WidthRequest="200" />
-                <Entry x:Name="enTime" Text="{Binding SendTime}" WidthRequest="200" />
+                <Entry x:Name="enTime" Text="{Binding SendTime}" WidthRequest="200" Keyboard="Numeric"/>
             </StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Button x:Name="btnSave" WidthRequest="130" Text="Save Climb" Clicked="btnSave_Clicked" />

@@ -20,6 +20,10 @@
                     <Label Text="Personal Best Time:" WidthRequest="200" />
                     <Label x:Name="lbBestTime" WidthRequest="200"/>
                 </StackLayout>
+                <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Label Text="Average Time:" WidthRequest="200" />
+                    <Label x:Name="lbAvgTime" WidthRequest="200"/>
+                </StackLayout>
                 <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Vertical">
                     <Label Text="Speed Times Over Time" HorizontalOptions="Center"/>
                     <microcharts:ChartView x:Name="chSpeedOverTime" WidthRequest="400" HeightRequest="200" />

@@ -30,8 +30,11 @@ namespace ClimbStats.Views
             lstSpeedClimbs.ItemsSource = sportClimbs;
             lstSpeedClimbs.IsRefreshing = false;
 
-            var PB = await App.SpeedVM.GetFastest();
-            lbBestTime.Text = PB.ToString();
+            var pb = await App.SpeedVM.GetFastest();
+            lbBestTime.Text = pb.ToString();
+
+            var avg = await App.SpeedVM.GetAverage();
+            lbAvgTime.Text = avg.ToString();
 
             UpdateSpeedTimeGraph();
         }

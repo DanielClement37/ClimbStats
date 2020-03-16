@@ -78,6 +78,27 @@ namespace ClimbStats.ViewModels
             return new double();
         }
 
+        public async Task<double> GetAverage()
+        {
+            try
+            {
+                double total = 0.0;
+                var climbs = await conn.Table<SpeedClimb>().ToListAsync();
+
+                foreach(SpeedClimb c in climbs)
+                {
+                    total += c.SendTime;
+                }
+
+                return Math.Round(total/climbs.Count, 2);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = string.Format("Failed to retrieve data. {0}", ex.Message);
+            }
+            return new double();
+        }
+
         //Get List of speed times
         public async Task<List<double>> GetAllTImes()
         {

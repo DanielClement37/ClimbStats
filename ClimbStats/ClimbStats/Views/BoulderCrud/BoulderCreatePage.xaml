@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local1="clr-namespace:ClimbStats.Behaviors"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.BoulderCrud.BoulderCreatePage">
     <ContentPage.Content>
@@ -15,7 +16,11 @@
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entNumAttempts" Text="1" WidthRequest="200" Keyboard="Numeric"/>
+                <Entry x:Name="entNumAttempts" Text="1" WidthRequest="200" Keyboard="Numeric">
+                    <Entry.Behaviors>
+                        <local1:NumericValidationBehavior />
+                    </Entry.Behaviors>
+                </Entry>
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Boulder" FontSize="Medium" WidthRequest="200" />

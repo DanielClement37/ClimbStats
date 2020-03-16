@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:ClimbStats.ViewModels"
+             xmlns:local1="clr-namespace:ClimbStats.Behaviors"
              x:Class="ClimbStats.Views.SportCrud.SportCreatePage"
              Title="Add Sport Climb">
 
@@ -18,7 +19,11 @@
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbNumAttemps" Text="Number of Attempts" FontSize="Medium" WidthRequest="200" />
-                <Entry x:Name="entNumAttempts" Text="1" WidthRequest="200" Keyboard="Numeric"/>
+                <Entry x:Name="entNumAttempts" Text="1" WidthRequest="200" Keyboard="Numeric">
+                    <Entry.Behaviors>
+                        <local1:NumericValidationBehavior />
+                    </Entry.Behaviors>
+                </Entry>
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbIsOutdoors" Text="Check for Outdoor Route" FontSize="Medium" WidthRequest="200" />

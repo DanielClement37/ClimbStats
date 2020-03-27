@@ -7,7 +7,8 @@
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.BoulderPage"
-             Title="Boulder Stats">
+             Title="Boulder Stats"
+             Visual="Material">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>

@@ -5,7 +5,8 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             mc:Ignorable="d"
             xmlns:views="clr-namespace:ClimbStats.Views"
-            x:Class="ClimbStats.Views.MainPage">
+            x:Class="ClimbStats.Views.MainPage"
+            Visual="Material">
 
     <TabbedPage.Children>
 

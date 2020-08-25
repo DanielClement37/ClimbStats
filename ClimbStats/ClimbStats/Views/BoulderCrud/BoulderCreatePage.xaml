@@ -5,13 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local1="clr-namespace:ClimbStats.Behaviors"
              mc:Ignorable="d"
-             x:Class="ClimbStats.Views.BoulderCrud.BoulderCreatePage">
+             x:Class="ClimbStats.Views.BoulderCrud.BoulderCreatePage"
+             Visual="Material">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbGrade" Text="Boulder Grade" FontSize="Medium" WidthRequest="200" />
                 <Picker x:Name="pkGrade"
-                        Title="Select a Grade">
+                        Title="Select a Grade"
+                        WidthRequest="200">
                 </Picker>
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">

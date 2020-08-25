@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local1="clr-namespace:ClimbStats.Behaviors"
              mc:Ignorable="d"
-             x:Class="ClimbStats.Views.BoulderCrud.BoulderDetailsPage">
+             x:Class="ClimbStats.Views.BoulderCrud.BoulderDetailsPage"
+             Visual="Material">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" IsVisible="False">

@@ -124,8 +124,6 @@ namespace ClimbStats.ViewModels
         //Add climb
         public async Task AddSpeedClimb(double time)
         {
-            int result = 0;
-
             var climb = new SpeedClimb
             {
                 SendDate = DateTime.Today,
@@ -136,7 +134,7 @@ namespace ClimbStats.ViewModels
             {
                 if (ClimbValidation(climb))
                 {
-                    result = await conn.InsertAsync(climb);
+                    var result = await conn.InsertAsync(climb);
 
                     StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nTime: {2}]", result, climb.SendDate, climb.SendTime);
                 }

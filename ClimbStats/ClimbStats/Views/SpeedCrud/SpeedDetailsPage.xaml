@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ClimbStats.Views.SpeedCrud.SpeedDetailsPage">
+             x:Class="ClimbStats.Views.SpeedCrud.SpeedDetailsPage"
+             Visual="Material">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" IsVisible="False">

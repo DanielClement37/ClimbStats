@@ -139,7 +139,7 @@ namespace ClimbStats.ViewModels
         //Get Climb Grades as int for graph
         public async Task<List<string>> GetGradesClimbed()
         {
-            List<string> DistinctGrades = new List<string>();
+            List<string> distinctGrades = new List<string>();
             HashSet<string> gradesClimbed = new HashSet<string>();
             try
             {
@@ -152,10 +152,10 @@ namespace ClimbStats.ViewModels
 
                 foreach(string g in gradesClimbed)
                 {
-                    DistinctGrades.Add(g);
+                    distinctGrades.Add(g);
                 }
 
-                return DistinctGrades;
+                return distinctGrades;
             }
             catch (Exception ex)
             {
@@ -169,7 +169,7 @@ namespace ClimbStats.ViewModels
         public async Task<List<int>> GetGradeCount()
         {
 
-            List<int> NumClimbed = new List<int>();
+            List<int> numClimbed = new List<int>();
 
             List<string> distinctClimbs = new List<string>();
             Dictionary<string, int> counts = new Dictionary<string, int>();
@@ -192,10 +192,10 @@ namespace ClimbStats.ViewModels
 
                 foreach(var c in counts)
                 {
-                    NumClimbed.Add(c.Value);
+                    numClimbed.Add(c.Value);
                 }
 
-                return NumClimbed;
+                return numClimbed;
             }
             catch (Exception ex)
             {
@@ -207,8 +207,6 @@ namespace ClimbStats.ViewModels
         //Add climb
         public async Task AddSportClimb(int numAttempts, KeyValuePair<int, string> grade, bool isOutdoors)
         {
-            int result = 0;
-
             var climb = new SportClimb
             {
                 SendDate = DateTime.Today,
@@ -222,7 +220,7 @@ namespace ClimbStats.ViewModels
             {
                 if (ClimbValidation(climb))
                 {
-                    result = await conn.InsertAsync(climb);
+                    var result = await conn.InsertAsync(climb);
 
                     StatusMessage = string.Format("{0} record(s) added \n[SendDate: {1},\nNumAttempts: {2},\nGrade: {3},\nIsOutdoors: {4}]", result, climb.SendDate, climb.NumAttempts, climb.GradeText, climb.IsOutdoors);
                 }

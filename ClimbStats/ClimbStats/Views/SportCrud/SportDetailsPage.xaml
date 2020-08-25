@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ClimbStats.Behaviors"
              mc:Ignorable="d"
              x:Class="ClimbStats.Views.SportCrud.SportDetailsPage"
-             Title="Climb Details">
+             Title="Climb Details"
+             Visual="Material">
 
     <ContentPage.Content>
         <StackLayout>

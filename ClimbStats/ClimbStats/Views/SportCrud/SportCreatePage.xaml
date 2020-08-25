@@ -7,14 +7,16 @@
              xmlns:local="clr-namespace:ClimbStats.ViewModels"
              xmlns:local1="clr-namespace:ClimbStats.Behaviors"
              x:Class="ClimbStats.Views.SportCrud.SportCreatePage"
-             Title="Add Sport Climb">
+             Title="Add Sport Climb"
+             Visual="Material">
 
     <ContentPage.Content>
         <StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label x:Name="lbGrade" Text="Climbing Grade" FontSize="Medium" WidthRequest="200" />
                 <Picker x:Name="pkGrade"
-                        Title="Select a Grade">
+                        Title="Select a Grade"
+                        WidthRequest="200">
                 </Picker>
             </StackLayout>
             <StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
